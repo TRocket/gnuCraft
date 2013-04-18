@@ -6,9 +6,11 @@
  */
 #include <iostream>
 #include "version.h"
+#include "window.h"
 
 int main(void) {
 	std::cout << "gnucraft v." << GIT_VERSION << std::endl;
+	openGNUCraftWindow();
 }
 
 

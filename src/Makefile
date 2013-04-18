@@ -1,11 +1,11 @@
-objects = gnucraft.o
-headers = version.h
+objects = gnucraft.o window.o
+headers = version.h window.h
 binary = gnucraft
 GIT_VERSION = $(shell sh -c 'git describe --dirty --always')
 CPPFLAGS = -g -D__GIT_VERSION=\"$(GIT_VERSION)\"
 
 $(binary): $(objects) 
-	g++ -g -o $@ $(objects) -l boost_system
+	g++ -g `sdl-config --cflags --libs` -o $@ $(objects) -l boost_system -lGL
 
 $(objects): $(headers)
 
