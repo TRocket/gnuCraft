@@ -2,6 +2,6 @@ language: cpp
 compiler: gcc
 install: 
  - sudo apt-get install libsdl1.2-dev libboost-dev libboost-system-dev -y
- - sudo pip install cpp-coveralls
+ - sudo easy_install https://github.com/eddyxu/cpp-coveralls/archive/master.zip
 script: cd src; make
 after_success: coveralls --exclude lib --exclude tests
