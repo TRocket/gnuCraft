@@ -5,7 +5,7 @@ GIT_VERSION = $(shell sh -c 'git describe --dirty --always')
 CPPFLAGS = -g -D__GIT_VERSION=\"$(GIT_VERSION)\"
 
 $(binary): $(objects) 
-	g++ -g `sdl-config --cflags --libs` -o $@ $(objects) -l boost_system -lGL
+	g++ -g -o $@ $(objects) -l boost_system `sdl-config --cflags --libs` -lGL
 
 $(objects): $(headers)
 
