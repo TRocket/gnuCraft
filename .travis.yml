@@ -1,4 +1,4 @@
 language: cpp
 compiler: gcc
-install: sudo apt-get install SDL
+install: sudo apt-get install libsdl1.2-dev -y
 script: cd src; make
