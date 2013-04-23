@@ -3,7 +3,7 @@ compiler: gcc
 install: 
  - sudo apt-get install libsdl1.2-dev libboost-dev libboost-system-dev mesa-common-dev freeglut3-dev -y
  - sudo easy_install https://github.com/eddyxu/cpp-coveralls/archive/master.zip
-script: cd src; make
+script: scons
 after_success:
  - gcov gnucraft.cpp
  - coveralls --exclude lib --exclude tests
