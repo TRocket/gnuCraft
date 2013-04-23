@@ -1,5 +1,7 @@
 env = Environment()  # Initialize the environment
 env.Append(LIBS = ['SDL','GL'])
-gitv = Environment(CCFLAGS = '-D__GIT_VERSION=\\"none\\"')
+env.Append(CCFLAGS = '-fprofile-arcs -ftest-coverage')
+env.Append(LINKFLAGS = '-fprofile-arcs -ftest-coverage')
+gitv = Environment(CCFLAGS = '-fprofile-arcs -ftest-coverage -D__GIT_VERSION=\\"none\\"')
 gitv.Object("gnucraft.cpp")
 env.Program(target = 'gnucraft', source = ["gnucraft.o", "chunk.cpp", "chunkManager.cpp", "window.cpp"])
