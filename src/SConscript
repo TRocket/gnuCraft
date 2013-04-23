@@ -1,0 +1,5 @@
+env = Environment()  # Initialize the environment
+env.Append(LIBS = ['SDL','GL'])
+gitv = Environment(CCFLAGS = '-D__GIT_VERSION=\\"none\\"')
+gitv.Object("gnucraft.cpp")
+env.Program(target = 'gnucraft', source = ["gnucraft.o", "chunk.cpp", "chunkManager.cpp", "window.cpp"])
