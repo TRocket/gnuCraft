@@ -7,5 +7,5 @@ script: scons
 after_success:
  - cd bin
  - ./gnucraft
- - gcov -o ./
+ - gcov gnucraft ./
  - coveralls --exclude lib --exclude tests
