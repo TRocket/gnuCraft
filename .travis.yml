@@ -5,5 +5,7 @@ install:
  - sudo easy_install https://github.com/eddyxu/cpp-coveralls/archive/master.zip
 script: scons
 after_success:
- - gcov gnucraft.cpp
+ - cd bin
+ - ./gnucraft
+ - gcov -o ./
  - coveralls --exclude lib --exclude tests
