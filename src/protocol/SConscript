@@ -1,0 +1,16 @@
+env = Environment()  # Initialize the environment
+env.Append(LIBS = ['boost_systems'])
+env.Append(CCFLAGS = '-fprofile-arcs -ftest-coverage')
+env.Append(LINKFLAGS = '-fprofile-arcs -ftest-coverage')
+env.Library(target = 'protocol', source = [
+"mcprotocol_base.cpp", "metadata.cpp", "msg_0x00_keepalive_tw.cpp", "msg_0x01_loginrequest_stc.cpp", "msg_0x02_handshake_cts.cpp", "msg_0x03_chatmessage_tw.cpp", "msg_0x04_timeupdate_stc.cpp", "msg_0x05_entityequipment_stc.cpp", "msg_0x06_spawnposition_stc.cpp",
+"msg_0x07_useentity_cts.cpp", "msg_0x08_healthupdate_stc.cpp", "msg_0x09_respawn_stc.cpp", "msg_0x0a_player_cts.cpp", "msg_0x0b_playerposition_cts.cpp", "msg_0x0c_playerlook_cts.cpp", "msg_0x0d_playerpositionandlook_tw.cpp", "msg_0x0e_playerdigging_cts.cpp",
+"msg_0x0f_playerblockplacement_cts.cpp", "msg_0x10_helditemchange_tw.cpp", "msg_0x11_usebed_stc.cpp", "msg_0x12_animation_tw.cpp", "msg_0x13_entityaction_cts.cpp", "msg_0x14_spawnnamedentity_stc.cpp", "msg_0x16_collectitem_stc.cpp", "msg_0x17_spawnobject_stc.cpp",
+"msg_0x18_spawnmob_stc.cpp", "msg_0x19_spawnpainting_stc.cpp", "msg_0x1a_spawnexperienceorb_stc.cpp", "msg_0x1c_entityvelocity_stc.cpp", "msg_0x1d_destroyentity_stc.cpp", "msg_0x1e_entity_stc.cpp", "msg_0x1f_entityrelativemove_stc.cpp", "msg_0x20_entitylook_stc.cpp",
+"msg_0x21_entitylookandrelativemove_stc.cpp", "msg_0x22_entityteleport_stc.cpp", "msg_0x23_entityheadlook_stc.cpp", "msg_0x26_entitystatus_stc.cpp", "msg_0x27_attachentity_stc.cpp", "msg_0x28_entitymetadata_stc.cpp", "msg_0x29_entityeffect_stc.cpp",
+"msg_0x2a_removeentityeffect_stc.cpp", "msg_0x2b_setexperience_stc.cpp", "msg_0x33_chunkdata_stc.cpp", "msg_0x34_multiblockchange_stc.cpp", "msg_0x35_blockchange_stc.cpp", "msg_0x36_blockaction_stc.cpp", "msg_0x37_blockbreakanimation_stc.cpp", "msg_0x38_mapchunkbulk_stc.cpp",
+"msg_0x3c_explosion_stc.cpp", "msg_0x3d_soundorparticleeffect_stc.cpp", "msg_0x3e_namedsoundeffect_stc.cpp", "msg_0x3f_particle_stc.cpp", "msg_0x46_changegamestate_stc.cpp", "msg_0x47_spawnglobalentity_stc.cpp", "msg_0x64_openwindow_stc.cpp", "msg_0x65_closewindow_tw.cpp",
+"msg_0x66_clickwindow_stc.cpp", "msg_0x67_setslot_stc.cpp", "msg_0x68_setwindowitems_stc.cpp", "msg_0x69_updatewindowproperty_stc.cpp", "msg_0x6a_confirmtransaction_tw.cpp", "msg_0x6b_creativeinventoryaction_tw.cpp", "msg_0x6c_encnahtitem_stc.cpp", "msg_0x82_updatesign_tw.cpp",
+"msg_0x83_itemdata_stc.cpp", "msg_0x84_updatetileentity_stc.cpp", "msg_0xc8_incrementstatistic_stc.cpp", "msg_0xc9_playerlistitem_stc.cpp", "msg_0xca_playerabilities_tw.cpp", "msg_0xcb_tabcomplete_tw.cpp", "msg_0xcc_clientsettings_cts.cpp", "msg_0xcd_clientstatuses_cts.cpp",
+"msg_0xce_scoreboardobjective_stc.cpp", "msg_0xcf_updatescore_stc.cpp", "msg_0xd0_displayscoreboard_stc.cpp", "msg_0xd1_teams_stc.cpp", "msg_0xfa_pluginmessage_tw.cpp", "msg_0xfc_encryptionkeyresponse_tw.cpp", "msg_0xfd_encryptionkeyrequest_stc.cpp", "msg_0xff_disconnect_tw.cpp",
+"objectdata.cpp", "slotdata.cpp"])
