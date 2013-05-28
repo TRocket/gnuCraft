@@ -6,7 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <boost/endian/conversion.hpp>
+#include "conversion.hpp"
 //#include <sdl/SDL_stdinc.h> // �� ��������� ������ "�����������" ������ �� typedef
 //#include <sdl/SDL_net.h>
 //#include <sdl/SDL_endian.h>
