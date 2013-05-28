@@ -2,7 +2,7 @@ env = Environment()  # Initialize the environment
 env.Append(LIBS = ['boost_systems'])
 env.Append(CCFLAGS = '-fprofile-arcs -ftest-coverage')
 env.Append(LINKFLAGS = '-fprofile-arcs -ftest-coverage')
-env.Library(target = 'protocol', source = [
+env.Library(target = '../protocol', source = [
 "mcprotocol_base.cpp", "metadata.cpp", "msg_0x00_keepalive_tw.cpp", "msg_0x01_loginrequest_stc.cpp", "msg_0x02_handshake_cts.cpp", "msg_0x03_chatmessage_tw.cpp", "msg_0x04_timeupdate_stc.cpp", "msg_0x05_entityequipment_stc.cpp", "msg_0x06_spawnposition_stc.cpp",
 "msg_0x07_useentity_cts.cpp", "msg_0x08_healthupdate_stc.cpp", "msg_0x09_respawn_stc.cpp", "msg_0x0a_player_cts.cpp", "msg_0x0b_playerposition_cts.cpp", "msg_0x0c_playerlook_cts.cpp", "msg_0x0d_playerpositionandlook_tw.cpp", "msg_0x0e_playerdigging_cts.cpp",
 "msg_0x0f_playerblockplacement_cts.cpp", "msg_0x10_helditemchange_tw.cpp", "msg_0x11_usebed_stc.cpp", "msg_0x12_animation_tw.cpp", "msg_0x13_entityaction_cts.cpp", "msg_0x14_spawnnamedentity_stc.cpp", "msg_0x16_collectitem_stc.cpp", "msg_0x17_spawnobject_stc.cpp",

@@ -1,12 +1,13 @@
 #ifndef _MCPROTOCOL_BASE_H_
 #define _MCPROTOCOL_BASE_H_
 
+ #include <string.h>
 #include <iostream>
 #include <vector>
 #include <sstream>
 #include <algorithm>
 #include <boost/endian/conversion.hpp>
-//#include <sdl/SDL_stdinc.h> // не исключена замена "встроенными" типами от typedef
+//#include <sdl/SDL_stdinc.h> // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ typedef
 //#include <sdl/SDL_net.h>
 //#include <sdl/SDL_endian.h>
 
@@ -21,14 +22,14 @@ typedef std::wstring			String16;
 
 const int VERSION = 61; // 1.5.2
 
-//class SlotData; // форвардное определение для избежания dependency hell
+//class SlotData; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dependency hell
 
 
-// Переработка функций сериализации/десериализации
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 class Exception_NotEnoughDataToRead {};
 
-// Бросает исключение, если недостаточно
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 inline void CheckIfEnoughBytesToRead(const Buffer& _src, size_t _offset, int _neededNBytes);
 
 size_t SkipBytes(const Buffer& _src, size_t _offset, int _nBytes);
@@ -43,7 +44,7 @@ size_t ReadBool(const Buffer& _src, size_t _offset, bool& _dst);
 size_t ReadFloat(const Buffer& _src, size_t _offset, float& _dst);
 size_t ReadDouble(const Buffer& _src, size_t _offset, double& _dst);
 size_t ReadString16(const Buffer& _src, size_t _offset, std::wstring& _dst);
-size_t ReadByteArray(const Buffer& _src, size_t _offset, size_t _len, ByteArray& _dst); // на данный момент оба типа в аргументах одинаковые
+size_t ReadByteArray(const Buffer& _src, size_t _offset, size_t _len, ByteArray& _dst); // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 template<class T> size_t WriteInt(Buffer& _dst, size_t _offset, T _src);
@@ -64,12 +65,12 @@ size_t WriteByteArray(Buffer& _dst, size_t _offset, const ByteArray& _src);
 namespace Msg
 {
 
-// Бессмысленный ID пакета. Используется в конструкторах по умолчанию.
-// На момент протокола 61 (1.5.2) пакета 0xF0 не существует. Возможно, потом изменится.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 61 (1.5.2) пїЅпїЅпїЅпїЅпїЅпїЅ 0xF0 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 const int8_t SENCELESS_PACKET_ID = 0xF0;
 
 
-// Базовый класс сообщения
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 class BaseMessage
 {
 public:
@@ -80,18 +81,18 @@ public:
 
 	int8_t getPacketId() const;
 
-	// Исключения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Попытка сериализовать неинициализированное сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	class Exception_SerializeUninitializedMessage {};
-	// Попытка десериализовать нулевой указатель
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	class Exception_DeserializeNullPtr {};
-	// Попытка десериализовать сообщение не тем классом
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	class Exception_DeserializeWrongPacket {};
 	
 		
 protected:
-	int8_t _pf_packetId;  // должно быть const
+	int8_t _pf_packetId;  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ const
 	bool _pf_initialized;
 	//const Sint8 _pf_PACKET_ID;
 
@@ -106,7 +107,7 @@ protected:
 } // namespace MC
 
 
-// Реализации вынесем подальше
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void MC::Protocol::CheckIfEnoughBytesToRead(const Buffer& _src, size_t _offset, int _neededNBytes)
 {
 	if(_src.size() - _offset < _neededNBytes)

@@ -1,7 +1,8 @@
+SConscript("../src/protocol/SConscript", build_dir='protocol')
 env = Environment()  # Initialize the environment
 env.Append(LIBS = ['SDL','GL'])
 env.Append(CCFLAGS = '-fprofile-arcs -ftest-coverage')
 env.Append(LINKFLAGS = '-fprofile-arcs -ftest-coverage')
 gitv = Environment(CCFLAGS = '-fprofile-arcs -ftest-coverage -D__GIT_VERSION=\\"none\\"')
 gitv.Object("gnucraft.cpp")
-env.Program(target = 'gnucraft', source = ["gnucraft.o", "chunk.cpp", "chunkManager.cpp", "window.cpp"])
+env.Program(target = 'gnucraft', source = ["gnucraft.o", "chunk.cpp", "chunkManager.cpp", "window.cpp"], LIBS = ["protocol", "SDL", "GL"], LIBPATH=".")
