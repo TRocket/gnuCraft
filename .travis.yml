@@ -9,3 +9,11 @@ after_success:
  - ./gnucraft
  - gcov gnucraft ./
  - coveralls --exclude lib --exclude tests
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#mcdev"
+    on_success: always
+    on_failure: always
+    use_notice: true
+    skip_join: true
