@@ -1,7 +1,7 @@
 language: cpp
 compiler: gcc
 install: 
-# - sudo apt-get install --fix-missing libsdl1.2-dev libboost-dev libboost-system-dev mesa-common-dev freeglut3-dev -y
+ - sudo apt-get install libsdl1.2-dev libboost-dev libboost-system-dev mesa-common-dev freeglut3-dev -y
  - sudo easy_install https://github.com/eddyxu/cpp-coveralls/archive/master.zip
 script: scons
 after_success:
@@ -9,11 +9,3 @@ after_success:
  - ./gnucraft
  - gcov gnucraft ./
  - coveralls --exclude lib --exclude tests
-notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#mcdevs"
-    on_success: always
-    on_failure: always
-    use_notice: true
-    skip_join: true
