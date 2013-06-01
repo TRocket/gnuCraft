@@ -1,7 +1,8 @@
 language: cpp
 compiler: gcc
 install: 
- - sudo apt-get install  lib32asound2-dev libsdl1.2-dev libboost-dev libboost-system-dev mesa-common-dev freeglut3-dev -y
+ - sudo apt-get update
+ - sudo apt-get install libsdl1.2-dev libboost-dev libboost-system-dev mesa-common-dev freeglut3-dev -y
  - sudo easy_install https://github.com/eddyxu/cpp-coveralls/archive/master.zip
 script: scons
 after_success:
