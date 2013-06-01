@@ -15,5 +15,5 @@ notifications:
       - "chat.freenode.net#mcdevs"
     on_success: always
     on_failure: always
-    #use_notice: true
-    #skip_join: true
+    use_notice: true
+    skip_join: true
